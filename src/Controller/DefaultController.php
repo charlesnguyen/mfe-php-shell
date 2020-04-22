@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class DefaultController extends Controller
 {
     /**
+     * @Route("/apps/{aispRouting}", requirements={"aispRouting"=".+"})
      * @Route("/", name="default")
      */
     public function indexAction()

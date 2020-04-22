@@ -13,12 +13,12 @@ const availableApps = [
     {
       name: "aisp",
       path: "http://localhost:8236/aisp.js",
-      link: "/aisp"
+      link: "/apps/aisp"
     },
     {
       name: "pisp",
       path: "http://localhost:8237/pisp.js",
-      link: "/pisp"
+      link: "/apps/pisp"
     }
   ]
 
