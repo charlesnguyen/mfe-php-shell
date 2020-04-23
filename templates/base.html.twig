@@ -6,6 +6,11 @@
         {% block stylesheets %}{% endblock %}
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     </head>
+    <script type="text/javascript">
+        var appConfig = {
+            token : "{{ token }}" //passing data from PHP to Javascript
+        };
+    </script>
     <body>
         {% block body %}{% endblock %}
         {% block javascripts %}
