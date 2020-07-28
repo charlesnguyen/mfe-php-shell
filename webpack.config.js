@@ -81,6 +81,3 @@ config.externals = {
 
 // export the final configuration
 module.exports = config;
-
-
-module.exports = config;

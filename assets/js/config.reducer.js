@@ -3,7 +3,9 @@ const UPDATE_TOKEN = "UPDATE_TOKEN";
 const defaultState = {
   config: "Shell",
   user: "Carlito",
-  token: ""
+  token: "",
+  local: 'en',
+  redirectUrl: '/login'
 };
 
 export const updateTokenAction = (token) => {

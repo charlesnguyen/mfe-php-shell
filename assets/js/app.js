@@ -4,10 +4,11 @@ import * as singleSpa from "single-spa";
 import { Provider, useDispatch } from "react-redux";
 import { Router, Link } from "react-router-dom";
 import appConfig from 'appConfig'; // retrieve data from PHP using webpack's externals => appConfig = window.appConfig
+import createSagaMiddleware from 'redux-saga'
+import {  compose, applyMiddleware } from "redux";
 
 import * as isActive from "./activityFns.js";
 import history from "./history";
-import {  compose } from "redux";
 import configureStore from "./reducer";
 import {updateTokenAction} from "./config.reducer";
 
@@ -17,8 +18,8 @@ window.SystemJS = window.System;
 const availableApps = [
     {
       name: "aisp",
-      path: "http://localhost:8236/aisp.js",
-      link: "/apps/aisp"
+      path: "http://localhost:8236/ais-pis.js",
+      link: "/apps/accounts"
     },
     {
       name: "pisp",
@@ -32,7 +33,9 @@ const composeEnhancers =
 typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
   ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
   : compose;
-const enhancer = composeEnhancers();
+
+const sagaMiddleware = createSagaMiddleware()
+const enhancer = composeEnhancers(applyMiddleware(sagaMiddleware));
 export const store = configureStore(enhancer);
 
 const App = () => {
@@ -44,10 +47,10 @@ const App = () => {
   },[]);
 
   return (
-      <div className="column">
+      <div className="row">
           {availableApps.map(
               ({ name, link }, index) => (
-                  <div key={`app_${index}`}><Link to={link} className="btn btn-link">{name}</Link></div>
+                  <div key={`app_${index}`}><Link to={link} className="nav-link">{name}</Link></div>
               )
           )}
       </div>
@@ -70,7 +73,7 @@ availableApps.forEach(app =>
     app.name,
     () => SystemJS.import(app.path),
     isActive[app.name],
-    { store }
+    { store, sagaMiddleware}
   )
 );
 

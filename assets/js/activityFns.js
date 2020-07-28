@@ -5,7 +5,7 @@ export function prefix(location, ...prefixes) {
 }
 
 export function aisp(location) {
-  return prefix(location, "apps/aisp");
+  return prefix(location, "apps/accounts");
 }
 
 export function pisp(location) {
